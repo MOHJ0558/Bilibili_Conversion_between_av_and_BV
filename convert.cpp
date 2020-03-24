@@ -43,6 +43,9 @@ int main() {
 		string BV;
 		cin >> BV;
 		cout << "av" << dec(BV) << endl;
+	} else {
+		cerr << "ERROR!" << endl;
+		return -1;
 	}
     return 0;
 }
