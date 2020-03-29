@@ -55,7 +55,7 @@ int main() {
 		cin >> isCopy;
 		if (isCopy == "y" || isCopy == "Y") {
 			ofstream saveBV("av.txt");
-			saveBV << BV << " is converted to:\n" << dec(BV);
+			saveBV << BV << " is converted to:\nav" << dec(BV);
 			saveBV.close();
 			cout << "Success!" << endl;
 		}
