@@ -11,14 +11,12 @@
 				border: 0;
 				height: 100%;
 				margin: 0;
-				padding: 1vh 20vw 5vh 20vw;
+				padding: 1vh 25vw 5vh 25vw;
 				width: 100%;
 			}
 			input[type="text"] {
 				background-color: #F0F0F0;
-				border:2px solid;
-				border-color: #F0F0F0;
-				font-size: 20px;
+				border:2px solid #F0F0F0;
 				font-family: monospace;
 			}
 			input[type="text"]:hover {
@@ -28,7 +26,6 @@
 				background-color: #D0D0D0;
 			}
 			input[type="button"] {
-				font-size: 10px;
 				font-family: monospace;
 				background-color: #F0F0F0;
 				border:2px solid;
@@ -54,7 +51,7 @@
 				for (var i = 0; i < r.length; i++) {
 					r[s[i]]=TABLE[Math.floor(x/Math.pow(58, i))%58]
 				}
-				var ret='';
+				var ret="";
 				for (var i = 0; i < r.length; i++) {
 					ret+=r[i];
 				}
@@ -75,22 +72,30 @@
 				return x;
 			}
 			function exec(type) {
-				if (type=='avtobv') {
-					var x=id('av').value;
-					if(x=='') {
+				if (type=="avtobv") {
+					var x=id("av").value;
+					if(x=="") {
 						id("result").innerHTML='NO VALUE!';
 						return;
 					}
 					var av=parseInt(x);
+					id("bv").value=enc(av);
 					id("result").innerHTML=enc(av);
 				} else {
-					var bv=id('bv').value;
-					if(bv=='') {
-						id("result").innerHTML='NO VALUE!';
+					var bv=id("bv").value;
+					if(bv=="") {
+						id("result").innerHTML="NO VALUE!";
 						return;
 					}
+					id("av").value=dec(bv);
 					id("result").innerHTML="av"+dec(bv);
 				}
+			}
+			function clr() {
+				id("av").value="";
+				id("bv").value="";
+				id("result").innerHTML="";
+				return;
 			}
 		</script>
 	</head>
@@ -99,13 +104,14 @@
 		<label style="text-align: left">av number (DO NOT input the letters "av"!):</label>
 		<input type="text" class="form-control" id="av">
 		<br>
-		<input type="button" class="btn" id="submitav" value="Submit" onclick="exec('avtobv')">
+		<input type="button" class="btn" id="submitav" value="Convert" onclick="exec('avtobv')">
 		<br><br><br>
 		<label style="text-align: left">BV string:</label>
 		<input type="text" class="form-control" id="bv">
 		<br>
-		<input type="button" class="btn" id="submitbv" value="Submit" onclick="exec('bvtoav')">
+		<input type="button" class="btn" id="submitbv" value="Convert" onclick="exec('bvtoav')">
 		<hr>
-		<h1 id="result" style="text-align: center">HERE APPEARS THE RESULT.</h1>
+		<div style="text-align: center"><input type="button" class="btn-lg" value="Clear" onclick="clr()"></div>
+		<h1 id="result" style="text-align: center"></h1>
 	</body>
 </html>
